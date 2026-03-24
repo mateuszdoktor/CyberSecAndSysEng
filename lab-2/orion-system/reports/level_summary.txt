@@ -1,0 +1,3 @@
+      4 ERROR
+      3 INFO
+      3 WARN
