@@ -1,6 +1,6 @@
-./../logs/sat-001-backup.log:2026-03-01 12:00:10 ERROR "Communication timeout"
-./../logs/sat-001.log:2026-03-01 12:00:10 ERROR "Communication timeout"
-./../logs/sat-002.log:2026-03-01 12:00:10 ERROR "Communication timeout"
-./../logs/sat-001-backup.log:2026-03-01 12:00:05 WARN "Temperature above threshold"
-./../logs/sat-001.log:2026-03-01 12:00:05 WARN "Temperature above threshold"
-./../logs/sat-002.log:2026-03-01 12:00:05 WARN "Temperature above threshold"
+ORION LOG SUMMARY
+Total log entries: 10
+INFO events: 3
+WARN events: 3
+ERROR events: 4
+Less stable satellite: sat-002

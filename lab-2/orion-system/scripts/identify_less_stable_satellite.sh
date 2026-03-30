@@ -1,3 +1,2 @@
 #!/bin/bash
- 
-grep ERROR ./../logs/sat-001.log | wc -l 
+grep -c ERROR ./../logs/*.log | tail -1 |  xargs basename | cut -d '.' -f1
