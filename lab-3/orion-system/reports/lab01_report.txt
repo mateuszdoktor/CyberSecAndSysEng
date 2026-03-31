@@ -1,0 +1,5 @@
+number of log entries for sat-001: 3
+number of log entries for sat-002: 3
+number of ERROR events: 2
+number of WARN events: 2
+1
