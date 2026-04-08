@@ -1,6 +1,6 @@
 ORION LOG SUMMARY
-Total log entries: 10
-INFO events: 3
-WARN events: 3
-ERROR events: 4
+Total log entries: 420
+INFO events: 339
+WARN events: 58
+ERROR events: 23
 Less stable satellite: sat-002

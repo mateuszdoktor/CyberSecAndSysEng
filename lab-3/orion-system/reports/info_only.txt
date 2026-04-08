@@ -1,3 +1,339 @@
-"Telemetry link established"
-"Telemetry link established"
-"Telemetry link established"
+ADCS Attitude stable
+PAYLOAD Sensor capture completed
+COMMS Link established
+PAYLOAD Sensor capture completed
+ADCS Pointing lock maintained
+NAV Navigation solution nominal
+COMMS Beacon transmitted
+THERMAL Temperature nominal
+THERMAL Temperature nominal
+THERMAL Radiator loop stable
+COMMS Packet queue empty
+ADCS Pointing lock maintained
+PAYLOAD Sensor capture completed
+COMMS Beacon transmitted
+POWER Power bus nominal
+THERMAL Thermal control nominal
+COMMS Channel check passed
+ADCS Attitude stable
+THERMAL Thermal control nominal
+ADCS Reaction wheel nominal
+COMMS Beacon transmitted
+NAV Position estimate updated
+NAV Orbit propagation updated
+PAYLOAD Imaging cycle complete
+THERMAL Temperature nominal
+COMMS Link established
+PAYLOAD Sensor capture completed
+NAV Navigation solution nominal
+DATA Telemetry frame stored
+ADCS Pointing lock maintained
+ADCS Reaction wheel nominal
+POWER Load balancing complete
+ADCS Reaction wheel nominal
+PAYLOAD Sensor capture completed
+DATA Data checksum valid
+POWER Power bus nominal
+DATA Telemetry frame stored
+POWER Solar input stable
+PAYLOAD Sensor capture completed
+PAYLOAD Imaging cycle complete
+DATA Data checksum valid
+THERMAL Radiator loop stable
+NAV Navigation solution nominal
+COMMS Link established
+THERMAL Thermal control nominal
+POWER Load balancing complete
+DATA Buffer flush complete
+NAV Navigation solution nominal
+ADCS Attitude stable
+THERMAL Temperature nominal
+PAYLOAD Imaging cycle complete
+THERMAL Radiator loop stable
+COMMS Packet queue empty
+PAYLOAD Sensor capture completed
+PAYLOAD Sensor capture completed
+DATA Telemetry frame stored
+NAV Orbit propagation updated
+COMMS Beacon transmitted
+NAV Position estimate updated
+ADCS Pointing lock maintained
+POWER Solar input stable
+COMMS Channel check passed
+ADCS Reaction wheel nominal
+POWER Battery nominal
+PAYLOAD Sensor capture completed
+PAYLOAD Payload idle
+POWER Power bus nominal
+POWER Power bus nominal
+DATA Telemetry frame stored
+PAYLOAD Sensor capture completed
+PAYLOAD Imaging cycle complete
+COMMS Beacon transmitted
+NAV Navigation solution nominal
+DATA Data checksum valid
+COMMS Beacon transmitted
+POWER Power bus nominal
+DATA Telemetry frame stored
+DATA Buffer flush complete
+POWER Load balancing complete
+PAYLOAD Sensor capture completed
+DATA Telemetry frame stored
+ADCS Attitude stable
+PAYLOAD Payload idle
+POWER Solar input stable
+NAV Orbit propagation updated
+THERMAL Radiator loop stable
+ADCS Attitude stable
+DATA Buffer flush complete
+NAV Position estimate updated
+DATA Telemetry frame stored
+COMMS Downlink nominal
+NAV Navigation solution nominal
+COMMS Link established
+POWER Power bus nominal
+NAV Navigation solution nominal
+PAYLOAD Payload idle
+ADCS Pointing lock maintained
+COMMS Downlink nominal
+DATA Telemetry frame stored
+PAYLOAD Imaging cycle complete
+NAV Navigation solution nominal
+POWER Load balancing complete
+ADCS Pointing lock maintained
+PAYLOAD Imaging cycle complete
+COMMS Downlink nominal
+DATA Data checksum valid
+NAV Position estimate updated
+PAYLOAD Imaging cycle complete
+DATA Data checksum valid
+THERMAL Thermal control nominal
+THERMAL Temperature nominal
+POWER Power bus nominal
+POWER Battery nominal
+NAV Position estimate updated
+POWER Load balancing complete
+POWER Battery nominal
+DATA Telemetry frame stored
+POWER Load balancing complete
+DATA Telemetry frame stored
+PAYLOAD Imaging cycle complete
+PAYLOAD Payload idle
+DATA Data checksum valid
+ADCS Reaction wheel nominal
+PAYLOAD Imaging cycle complete
+THERMAL Radiator loop stable
+COMMS Beacon transmitted
+NAV Orbit propagation updated
+NAV Navigation solution nominal
+THERMAL Radiator loop stable
+DATA Buffer flush complete
+PAYLOAD Payload idle
+NAV Position estimate updated
+NAV Navigation solution nominal
+POWER Battery nominal
+PAYLOAD Payload idle
+COMMS Downlink nominal
+NAV Position estimate updated
+NAV Position estimate updated
+NAV Position estimate updated
+COMMS Channel check passed
+THERMAL Radiator loop stable
+ADCS Pointing lock maintained
+POWER Power bus nominal
+THERMAL Thermal control nominal
+NAV Position estimate updated
+COMMS Channel check passed
+POWER Battery nominal
+DATA Data checksum valid
+DATA Data checksum valid
+PAYLOAD Payload idle
+THERMAL Thermal control nominal
+ADCS Attitude stable
+PAYLOAD Imaging cycle complete
+ADCS Pointing lock maintained
+POWER Battery nominal
+POWER Load balancing complete
+NAV Position estimate updated
+THERMAL Temperature nominal
+POWER Load balancing complete
+NAV Orbit propagation updated
+NAV Navigation solution nominal
+PAYLOAD Imaging cycle complete
+THERMAL Radiator loop stable
+THERMAL Thermal control nominal
+THERMAL Temperature nominal
+DATA Data checksum valid
+DATA Data checksum valid
+COMMS Beacon transmitted
+POWER Power bus nominal
+PAYLOAD Imaging cycle complete
+ADCS Reaction wheel nominal
+PAYLOAD Imaging cycle complete
+THERMAL Temperature nominal
+NAV Position estimate updated
+ADCS Attitude stable
+COMMS Channel check passed
+PAYLOAD Payload idle
+NAV Position estimate updated
+DATA Data checksum valid
+PAYLOAD Sensor capture completed
+COMMS Beacon transmitted
+COMMS Beacon transmitted
+ADCS Reaction wheel nominal
+THERMAL Thermal control nominal
+POWER Load balancing complete
+ADCS Attitude stable
+THERMAL Radiator loop stable
+THERMAL Thermal control nominal
+PAYLOAD Payload idle
+PAYLOAD Sensor capture completed
+THERMAL Thermal control nominal
+PAYLOAD Sensor capture completed
+THERMAL Thermal control nominal
+POWER Load balancing complete
+THERMAL Temperature nominal
+DATA Buffer flush complete
+NAV Position estimate updated
+DATA Telemetry frame stored
+NAV Position estimate updated
+DATA Data checksum valid
+THERMAL Radiator loop stable
+COMMS Channel check passed
+POWER Power bus nominal
+ADCS Reaction wheel nominal
+NAV Navigation solution nominal
+COMMS Packet queue empty
+POWER Load balancing complete
+PAYLOAD Payload idle
+NAV Position estimate updated
+POWER Load balancing complete
+PAYLOAD Payload idle
+COMMS Downlink nominal
+NAV Position estimate updated
+THERMAL Temperature nominal
+DATA Data checksum valid
+NAV Orbit propagation updated
+THERMAL Radiator loop stable
+NAV Position estimate updated
+POWER Solar input stable
+DATA Buffer flush complete
+NAV Navigation solution nominal
+NAV Navigation solution nominal
+POWER Load balancing complete
+PAYLOAD Imaging cycle complete
+NAV Orbit propagation updated
+DATA Data checksum valid
+NAV Navigation solution nominal
+DATA Data checksum valid
+THERMAL Thermal control nominal
+NAV Navigation solution nominal
+POWER Power bus nominal
+NAV Orbit propagation updated
+DATA Telemetry frame stored
+THERMAL Temperature nominal
+COMMS Downlink nominal
+POWER Solar input stable
+ADCS Attitude stable
+PAYLOAD Imaging cycle complete
+NAV Navigation solution nominal
+ADCS Reaction wheel nominal
+COMMS Packet queue empty
+PAYLOAD Sensor capture completed
+THERMAL Thermal control nominal
+NAV Navigation solution nominal
+THERMAL Temperature nominal
+COMMS Beacon transmitted
+PAYLOAD Imaging cycle complete
+DATA Data checksum valid
+PAYLOAD Payload idle
+COMMS Channel check passed
+THERMAL Temperature nominal
+POWER Solar input stable
+DATA Data checksum valid
+DATA Telemetry frame stored
+NAV Orbit propagation updated
+POWER Battery nominal
+ADCS Reaction wheel nominal
+DATA Data checksum valid
+PAYLOAD Payload idle
+POWER Power bus nominal
+NAV Position estimate updated
+DATA Telemetry frame stored
+POWER Solar input stable
+ADCS Reaction wheel nominal
+THERMAL Temperature nominal
+THERMAL Thermal control nominal
+ADCS Pointing lock maintained
+NAV Navigation solution nominal
+ADCS Attitude stable
+ADCS Attitude stable
+ADCS Reaction wheel nominal
+POWER Battery nominal
+NAV Orbit propagation updated
+PAYLOAD Sensor capture completed
+ADCS Pointing lock maintained
+NAV Navigation solution nominal
+NAV Navigation solution nominal
+PAYLOAD Imaging cycle complete
+COMMS Downlink nominal
+POWER Power bus nominal
+THERMAL Thermal control nominal
+THERMAL Temperature nominal
+COMMS Packet queue empty
+ADCS Pointing lock maintained
+COMMS Downlink nominal
+DATA Data checksum valid
+DATA Telemetry frame stored
+DATA Data checksum valid
+POWER Solar input stable
+POWER Battery nominal
+POWER Battery nominal
+POWER Power bus nominal
+COMMS Beacon transmitted
+COMMS Link established
+THERMAL Thermal control nominal
+ADCS Attitude stable
+DATA Buffer flush complete
+NAV Navigation solution nominal
+COMMS Downlink nominal
+POWER Power bus nominal
+PAYLOAD Payload idle
+PAYLOAD Payload idle
+PAYLOAD Imaging cycle complete
+COMMS Channel check passed
+NAV Position estimate updated
+THERMAL Radiator loop stable
+COMMS Downlink nominal
+THERMAL Radiator loop stable
+NAV Orbit propagation updated
+COMMS Packet queue empty
+THERMAL Temperature nominal
+NAV Position estimate updated
+DATA Buffer flush complete
+COMMS Downlink nominal
+COMMS Channel check passed
+ADCS Reaction wheel nominal
+THERMAL Thermal control nominal
+DATA Data checksum valid
+PAYLOAD Payload idle
+PAYLOAD Payload idle
+COMMS Beacon transmitted
+THERMAL Radiator loop stable
+COMMS Beacon transmitted
+COMMS Link established
+NAV Position estimate updated
+THERMAL Radiator loop stable
+PAYLOAD Payload idle
+POWER Solar input stable
+ADCS Attitude stable
+NAV Position estimate updated
+THERMAL Temperature nominal
+THERMAL Radiator loop stable
+ADCS Pointing lock maintained
+THERMAL Temperature nominal
+PAYLOAD Sensor capture completed
+POWER Solar input stable
+THERMAL Temperature nominal
+NAV Orbit propagation updated
+ADCS Attitude stable
