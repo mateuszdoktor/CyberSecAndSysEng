@@ -1,2 +1,4 @@
 #!/bin/bash
-grep -c ERROR ./../logs/*.log | tail -1 |  xargs basename | cut -d '.' -f1
+for file in ../logs/*.log; do
+    echo "$(grep -c "ERROR" "$file") $(basename "$file" .log)"
+done | sort -nr | head -n 1 | awk '{print $2}'

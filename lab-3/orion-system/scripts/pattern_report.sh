@@ -1,11 +1,16 @@
 #!/bin/bash
-file_logs(){
- echo "$1: $(grep $2 $1 | wc -l)"
-}
 
-echo "PATTERN REPORT: $1"
+if [ -z "$1" ]; then
+    echo "Missing argument: search pattern is required"
+    exit 1
+fi
 
-for file in ../logs/*.log
-do
- file_logs $file $1
+PATTERN=$1
+OUTPUT="../reports/pattern_report.txt"
+> "$OUTPUT"
+echo "PATTERN REPORT: ${PATTERN}" >> "$OUTPUT"
+
+for file in ../logs/*.log; do
+    count=$(grep -c "$PATTERN" "$file")
+    echo "$file: $count" >> "$OUTPUT"
 done

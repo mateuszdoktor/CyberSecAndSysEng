@@ -1,9 +1,9 @@
 #!/bin/bash
-extract_timestamps(){
- grep $1 ../logs/*.log | cut -d " " -f2 > ../reports/pattern_timestamps.txt
-}
 
-for file in ../logs/*.log
-do
- extract_timestamps $1
-done
+if [ -z "$1" ]; then
+    echo "Missing argument: search pattern is required"
+    exit 1
+fi
+
+PATTERN=$1
+grep -h "$PATTERN" ../logs/*.log | cut -d " " -f1,2 > ../reports/pattern_timestamps.txt

@@ -1,3 +1,3 @@
-      4 ERROR
-      3 INFO
-      3 WARN
+  23 ERROR
+ 339 INFO
+  58 WARN
