@@ -1,0 +1,23 @@
+./../logs/sat-001.log:2026-03-01 12:39:54 ERROR THERMAL Heater control fault
+./../logs/sat-001.log:2026-03-01 13:09:15 ERROR THERMAL Heater control fault
+./../logs/sat-001.log:2026-03-01 13:22:11 ERROR PAYLOAD Payload capture failed
+./../logs/sat-001.log:2026-03-01 13:39:17 ERROR NAV Navigation solution invalid
+./../logs/sat-001.log:2026-03-01 14:06:05 ERROR DATA Data pipeline halted
+./../logs/sat-001.log:2026-03-01 14:12:32 ERROR DATA Telemetry corruption detected
+./../logs/sat-001.log:2026-03-01 14:17:46 ERROR THERMAL Temperature limit exceeded
+./../logs/sat-001.log:2026-03-01 14:36:30 ERROR POWER Battery protection trip
+./../logs/sat-001.log:2026-03-01 14:47:29 ERROR NAV Position calculation failed
+./../logs/sat-002.log:2026-03-01 12:42:00 ERROR DATA Data pipeline halted
+./../logs/sat-002.log:2026-03-01 12:55:06 ERROR NAV Position calculation failed
+./../logs/sat-002.log:2026-03-01 13:03:29 ERROR COMMS Loss of carrier detected
+./../logs/sat-002.log:2026-03-01 13:04:58 ERROR THERMAL Thermal runaway risk detected
+./../logs/sat-002.log:2026-03-01 13:06:41 ERROR ADCS Attitude control fault
+./../logs/sat-002.log:2026-03-01 13:08:37 ERROR POWER Power bus fault
+./../logs/sat-002.log:2026-03-01 13:10:44 ERROR POWER Power bus fault
+./../logs/sat-002.log:2026-03-01 13:25:14 ERROR PAYLOAD Sensor calibration error
+./../logs/sat-002.log:2026-03-01 13:28:01 ERROR NAV Navigation solution invalid
+./../logs/sat-002.log:2026-03-01 13:43:21 ERROR ADCS Reaction wheel saturation
+./../logs/sat-002.log:2026-03-01 14:17:00 ERROR NAV Orbit update rejected
+./../logs/sat-002.log:2026-03-01 14:33:02 ERROR POWER Power distribution reset required
+./../logs/sat-002.log:2026-03-01 14:53:19 ERROR THERMAL Temperature limit exceeded
+./../logs/sat-002.log:2026-03-01 14:58:49 ERROR NAV Position calculation failed
