@@ -1,0 +1,17 @@
+
+../logs/sat-001.log:  9
+../logs/sat-001.log WARN: 25
+../logs/sat-001.log ERROR: 9
+../logs/sat-001.log INFO: 106
+
+../logs/sat-002.log:  14
+../logs/sat-002.log WARN: 23
+../logs/sat-002.log ERROR: 14
+../logs/sat-002.log INFO: 103
+
+../logs/sat-003.log:  0
+../logs/sat-003.log WARN: 10
+../logs/sat-003.log ERROR: 0
+../logs/sat-003.log INFO: 130
+
+Total number of INFO: 339

@@ -1,0 +1,5 @@
+PATTERN REPORT: INFO
+--
+../logs/sat-001.log: 106
+../logs/sat-002.log: 103
+../logs/sat-003.log: 130

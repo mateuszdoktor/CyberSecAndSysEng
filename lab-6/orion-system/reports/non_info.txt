@@ -1,0 +1,81 @@
+2026-03-01 12:01:41 WARN ADCS Reaction wheel vibration elevated
+2026-03-01 12:16:47 WARN NAV Ephemeris update delayed
+2026-03-01 12:22:20 WARN ADCS Pointing jitter detected
+2026-03-01 12:26:28 WARN THERMAL Cooling efficiency reduced
+2026-03-01 12:39:54 ERROR THERMAL Heater control fault
+2026-03-01 12:40:48 WARN PAYLOAD Optical noise elevated
+2026-03-01 12:44:54 WARN ADCS Attitude correction backlog
+2026-03-01 12:51:23 WARN ADCS Pointing jitter detected
+2026-03-01 13:06:58 WARN DATA Frame reorder detected
+2026-03-01 13:09:15 ERROR THERMAL Heater control fault
+2026-03-01 13:09:37 WARN THERMAL Cooling efficiency reduced
+2026-03-01 13:10:27 WARN PAYLOAD Sensor response delayed
+2026-03-01 13:21:08 WARN POWER Voltage fluctuation detected
+2026-03-01 13:22:11 ERROR PAYLOAD Payload capture failed
+2026-03-01 13:24:35 WARN COMMS Intermittent downlink delay
+2026-03-01 13:28:01 WARN ADCS Reaction wheel vibration elevated
+2026-03-01 13:39:17 ERROR NAV Navigation solution invalid
+2026-03-01 13:47:51 WARN NAV Clock drift above nominal
+2026-03-01 13:51:33 WARN POWER Voltage fluctuation detected
+2026-03-01 13:53:09 WARN DATA Buffer utilization high
+2026-03-01 13:54:20 WARN PAYLOAD Sensor response delayed
+2026-03-01 14:06:05 ERROR DATA Data pipeline halted
+2026-03-01 14:07:56 WARN COMMS Signal attenuation detected
+2026-03-01 14:09:26 WARN THERMAL Thermal gradient increasing
+2026-03-01 14:12:32 ERROR DATA Telemetry corruption detected
+2026-03-01 14:16:17 WARN ADCS Pointing jitter detected
+2026-03-01 14:17:46 ERROR THERMAL Temperature limit exceeded
+2026-03-01 14:19:16 WARN POWER Voltage fluctuation detected
+2026-03-01 14:24:15 WARN DATA Frame reorder detected
+2026-03-01 14:32:47 WARN ADCS Pointing jitter detected
+2026-03-01 14:36:30 ERROR POWER Battery protection trip
+2026-03-01 14:43:19 WARN NAV Position residual elevated
+2026-03-01 14:46:37 WARN PAYLOAD Sensor response delayed
+2026-03-01 14:47:29 ERROR NAV Position calculation failed
+2026-03-01 12:10:36 WARN NAV Clock drift above nominal
+2026-03-01 12:22:17 WARN NAV Clock drift above nominal
+2026-03-01 12:30:28 WARN POWER Transient current spike observed
+2026-03-01 12:33:03 WARN NAV Ephemeris update delayed
+2026-03-01 12:36:33 WARN ADCS Pointing jitter detected
+2026-03-01 12:38:23 WARN NAV Position residual elevated
+2026-03-01 12:42:00 ERROR DATA Data pipeline halted
+2026-03-01 12:48:46 WARN POWER Battery discharge rate elevated
+2026-03-01 12:55:06 ERROR NAV Position calculation failed
+2026-03-01 13:03:29 ERROR COMMS Loss of carrier detected
+2026-03-01 13:04:58 ERROR THERMAL Thermal runaway risk detected
+2026-03-01 13:06:41 ERROR ADCS Attitude control fault
+2026-03-01 13:08:37 ERROR POWER Power bus fault
+2026-03-01 13:10:44 ERROR POWER Power bus fault
+2026-03-01 13:25:14 ERROR PAYLOAD Sensor calibration error
+2026-03-01 13:28:01 ERROR NAV Navigation solution invalid
+2026-03-01 13:32:03 WARN PAYLOAD Optical noise elevated
+2026-03-01 13:39:22 WARN DATA Write latency elevated
+2026-03-01 13:40:25 WARN PAYLOAD Optical noise elevated
+2026-03-01 13:42:37 WARN COMMS Signal attenuation detected
+2026-03-01 13:43:21 ERROR ADCS Reaction wheel saturation
+2026-03-01 13:52:20 WARN THERMAL Temperature above expected band
+2026-03-01 13:55:33 WARN ADCS Reaction wheel vibration elevated
+2026-03-01 13:59:01 WARN POWER Battery discharge rate elevated
+2026-03-01 14:03:55 WARN DATA Write latency elevated
+2026-03-01 14:05:37 WARN PAYLOAD Frame drop detected
+2026-03-01 14:15:40 WARN ADCS Pointing jitter detected
+2026-03-01 14:16:20 WARN PAYLOAD Sensor response delayed
+2026-03-01 14:17:00 ERROR NAV Orbit update rejected
+2026-03-01 14:24:26 WARN POWER Voltage fluctuation detected
+2026-03-01 14:24:53 WARN THERMAL Thermal gradient increasing
+2026-03-01 14:33:02 ERROR POWER Power distribution reset required
+2026-03-01 14:46:14 WARN DATA Write latency elevated
+2026-03-01 14:53:19 ERROR THERMAL Temperature limit exceeded
+2026-03-01 14:55:17 WARN ADCS Attitude correction backlog
+2026-03-01 14:57:19 WARN POWER Battery discharge rate elevated
+2026-03-01 14:58:49 ERROR NAV Position calculation failed
+2026-03-01 12:24:30 WARN DATA Write latency elevated
+2026-03-01 12:27:33 WARN DATA Write latency elevated
+2026-03-01 13:05:23 WARN ADCS Attitude correction backlog
+2026-03-01 13:32:38 WARN PAYLOAD Sensor calibration error
+2026-03-01 13:55:28 WARN DATA Frame reorder detected
+2026-03-01 14:07:05 WARN PAYLOAD Sensor response delayed
+2026-03-01 14:08:43 WARN DATA Frame reorder detected
+2026-03-01 14:29:35 WARN PAYLOAD Optical noise elevated
+2026-03-01 14:39:54 WARN THERMAL Thermal gradient increasing
+2026-03-01 14:48:26 WARN DATA Telemetry corruption detected
