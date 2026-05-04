@@ -1,0 +1,212 @@
+========================================
+Runtime Security Snapshot
+========================================
+Date and time: 2026-04-20 16:34:52
+Total active processes: 264
+Top CPU process: PID=8975 PROC=python3 CPU=50.0%
+Unauthorized processes: 186
+Total ERROR entries across all logs: 23
+Incident classification: CRITICAL
+Classification summary: at least two suspicious indicators were observed simultaneously
+----------------------------------------
+Thresholds:
+- CPU threshold: 50%
+- ERROR threshold per log: 10
+----------------------------------------
+Triggered indicators:
+- unauthorized processes detected: 186
+- log anomaly: at least one mission log exceeds ERROR threshold 10
+----------------------------------------
+Log summary:
+- sat-001.log: 9 ERROR entries
+- sat-002.log: 14 ERROR entries
+- sat-003.log: 0 ERROR entries
+Most unstable log: sat-002.log (14 ERROR entries)
+----------------------------------------
+Unauthorized process details:
+- PID=2 PROC=kthreadd
+- PID=3 PROC=pool_workqueue_release
+- PID=15 PROC=ksoftirqd/0
+- PID=16 PROC=rcu_preempt
+- PID=17 PROC=rcu_exp_par_gp_kthread_worker/0
+- PID=18 PROC=rcu_exp_gp_kthread_worker
+- PID=19 PROC=migration/0
+- PID=20 PROC=cpuhp/0
+- PID=21 PROC=cpuhp/1
+- PID=22 PROC=migration/1
+- PID=23 PROC=ksoftirqd/1
+- PID=26 PROC=cpuhp/2
+- PID=27 PROC=migration/2
+- PID=28 PROC=ksoftirqd/2
+- PID=31 PROC=cpuhp/3
+- PID=32 PROC=migration/3
+- PID=33 PROC=ksoftirqd/3
+- PID=36 PROC=kdevtmpfs
+- PID=38 PROC=rcu_tasks_kthread
+- PID=39 PROC=rcu_tasks_rude_kthread
+- PID=40 PROC=rcu_tasks_trace_kthread
+- PID=41 PROC=kauditd
+- PID=42 PROC=oom_reaper
+- PID=44 PROC=kcompactd0
+- PID=45 PROC=ksmd
+- PID=46 PROC=khugepaged
+- PID=57 PROC=watchdogd
+- PID=63 PROC=kswapd0
+- PID=70 PROC=hwrng
+- PID=157 PROC=irq/13-ACPI:Event
+- PID=358 PROC=card0-crtc0
+- PID=383 PROC=btrfs-cleaner
+- PID=384 PROC=btrfs-transaction
+- PID=473 PROC=systemd-journal
+- PID=505 PROC=systemd-userdbd
+- PID=518 PROC=systemd-udevd
+- PID=522 PROC=psimon
+- PID=607 PROC=jbd2/vda2-8
+- PID=630 PROC=systemd-resolve
+- PID=633 PROC=auditd
+- PID=660 PROC=dbus-broker-lau
+- PID=662 PROC=dbus-broker
+- PID=665 PROC=avahi-daemon
+- PID=668 PROC=irqbalance
+- PID=669 PROC=chronyd
+- PID=671 PROC=low-memory-moni
+- PID=674 PROC=polkitd
+- PID=676 PROC=rtkit-daemon
+- PID=678 PROC=switcheroo-cont
+- PID=679 PROC=systemd-machine
+- PID=682 PROC=udisksd
+- PID=684 PROC=upowerd
+- PID=693 PROC=psimon
+- PID=701 PROC=accounts-daemon
+- PID=703 PROC=systemd-logind
+- PID=710 PROC=abrtd
+- PID=716 PROC=alsactl
+- PID=720 PROC=avahi-daemon
+- PID=760 PROC=ModemManager
+- PID=763 PROC=firewalld
+- PID=771 PROC=abrt-dump-journ
+- PID=772 PROC=abrt-dump-journ
+- PID=778 PROC=abrt-dump-journ
+- PID=822 PROC=NetworkManager
+- PID=832 PROC=cupsd
+- PID=833 PROC=gssproxy
+- PID=834 PROC=tuned
+- PID=894 PROC=tuned-ppd
+- PID=916 PROC=rsyslogd
+- PID=922 PROC=atd
+- PID=923 PROC=crond
+- PID=924 PROC=gdm
+- PID=993 PROC=uresourced
+- PID=1004 PROC=psimon
+- PID=1128 PROC=colord
+- PID=1251 PROC=pcscd
+- PID=1293 PROC=spice-vdagentd
+- PID=1326 PROC=geoclue
+- PID=1355 PROC=wpa_supplicant
+- PID=1914 PROC=gdm-session-wor
+- PID=1925 PROC=(sd-pam)
+- PID=1943 PROC=gnome-keyring-d
+- PID=1991 PROC=gdm-wayland-ses
+- PID=2004 PROC=dbus-broker-lau
+- PID=2024 PROC=dbus-broker
+- PID=2026 PROC=gnome-session-i
+- PID=2069 PROC=gnome-session-c
+- PID=2070 PROC=uresourced
+- PID=2077 PROC=gnome-session-s
+- PID=2079 PROC=gvfsd
+- PID=2090 PROC=gvfsd-fuse
+- PID=2101 PROC=pipewire
+- PID=2102 PROC=wireplumber
+- PID=2103 PROC=gnome-shell
+- PID=2154 PROC=at-spi-bus-laun
+- PID=2160 PROC=dbus-broker-lau
+- PID=2161 PROC=dbus-broker
+- PID=2162 PROC=at-spi2-registr
+- PID=2171 PROC=gnome-shell-cal
+- PID=2172 PROC=xdg-permission-
+- PID=2195 PROC=evolution-sourc
+- PID=2205 PROC=gvfsd-metadata
+- PID=2212 PROC=gjs
+- PID=2222 PROC=ibus-daemon
+- PID=2225 PROC=gsd-a11y-settin
+- PID=2226 PROC=gsd-color
+- PID=2229 PROC=gsd-datetime
+- PID=2243 PROC=gsd-housekeepin
+- PID=2244 PROC=gsd-keyboard
+- PID=2250 PROC=gsd-media-keys
+- PID=2252 PROC=gsd-power
+- PID=2256 PROC=gsd-print-notif
+- PID=2258 PROC=gsd-rfkill
+- PID=2261 PROC=gsd-screensaver
+- PID=2274 PROC=gsd-sharing
+- PID=2283 PROC=gsd-smartcard
+- PID=2286 PROC=gsd-sound
+- PID=2290 PROC=gsd-usb-protect
+- PID=2295 PROC=gsd-disk-utilit
+- PID=2296 PROC=gsd-wwan
+- PID=2343 PROC=ibus-dconf
+- PID=2345 PROC=ibus-extension-
+- PID=2431 PROC=ibus-portal
+- PID=2433 PROC=abrt-applet
+- PID=2434 PROC=goa-daemon
+- PID=2439 PROC=gjs
+- PID=2441 PROC=gnome-user-shar
+- PID=2442 PROC=gvfs-udisks2-vo
+- PID=2443 PROC=localsearch-3
+- PID=2445 PROC=evolution-alarm
+- PID=2489 PROC=gnome-software
+- PID=2491 PROC=pipewire-pulse
+- PID=2495 PROC=rygel
+- PID=2513 PROC=spice-vdagent
+- PID=2532 PROC=goa-identity-se
+- PID=2535 PROC=evolution-calen
+- PID=2536 PROC=gvfs-afc-volume
+- PID=2537 PROC=httpd
+- PID=2539 PROC=httpd
+- PID=2541 PROC=httpd
+- PID=2558 PROC=gvfs-mtp-volume
+- PID=2561 PROC=abrt-dbus
+- PID=2586 PROC=gvfs-gphoto2-vo
+- PID=2589 PROC=xdg-desktop-por
+- PID=2602 PROC=gvfs-goa-volume
+- PID=2613 PROC=xdg-document-po
+- PID=2619 PROC=Xwayland
+- PID=2621 PROC=sssd_kcm
+- PID=2627 PROC=fusermount3
+- PID=2632 PROC=xdg-desktop-por
+- PID=2641 PROC=evolution-addre
+- PID=2684 PROC=dconf-service
+- PID=2690 PROC=ibus-engine-sim
+- PID=2760 PROC=gsd-xsettings
+- PID=2796 PROC=mutter-x11-fram
+- PID=2813 PROC=ibus-x11
+- PID=3034 PROC=gsd-printer
+- PID=3171 PROC=xdg-desktop-por
+- PID=3181 PROC=gnome-keyring-d
+- PID=3210 PROC=fwupd
+- PID=3609 PROC=code
+- PID=3613 PROC=code
+- PID=3614 PROC=code
+- PID=3616 PROC=code
+- PID=3631 PROC=chrome_crashpad
+- PID=3656 PROC=code
+- PID=3710 PROC=code
+- PID=3763 PROC=code
+- PID=3784 PROC=code
+- PID=3785 PROC=code
+- PID=3786 PROC=code
+- PID=3967 PROC=ibus-engine-tb
+- PID=4790 PROC=gvfsd-trash
+- PID=5065 PROC=gvfsd-network
+- PID=5071 PROC=gvfsd-dnssd
+- PID=5077 PROC=gvfsd-wsdd
+- PID=5082 PROC=wsdd
+- PID=5520 PROC=code
+- PID=7662 PROC=catatonit
+- PID=8252 PROC=systemd-userwor
+- PID=8253 PROC=systemd-userwor
+- PID=8478 PROC=pet
+- PID=8536 PROC=pet
+- PID=8631 PROC=code
+- PID=8757 PROC=systemd-userwor
+- PID=8932 PROC=code
