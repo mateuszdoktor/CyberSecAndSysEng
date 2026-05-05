@@ -1,3 +1,0 @@
-  23 ERROR
- 339 INFO
-  58 WARN

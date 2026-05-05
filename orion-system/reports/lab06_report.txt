@@ -1,0 +1,45 @@
+https://github.com/mateuszdoktor/CyberSecAndSysEng/pull/5
+
+=== TASK 1: Insecure Telemetry Channel ===
+Example messages:
+SAT_ID=sat-001;TIMESTAMP=2026-05-04T12:00:00+02:00;VALUE=45
+SAT_ID=sat-001;TIMESTAMP=2026-05-04T12:00:02+02:00;VALUE=22
+
+- Satellite identity field: SAT_ID
+- Time field: TIMESTAMP
+- Measurement value field: VALUE
+- Explanation: The ground receiver gets the satellite ID, the time of the measurement, and the measured value. All this data is sent as plain text without any encryption or integrity checks.
+
+=== TASK 2: Observing and Intercepting Insecure Telemetry ===
+- Command used to observe traffic: sudo tcpdump -i lo -A tcp port 5000
+- Fragment of observed telemetry: SAT_ID=sat-001;TIMESTAMP=2026-05-04T12:00:00+02:00;VALUE=45
+- Why it can be read: The data is sent in plain text, meaning there is no encryption.
+- Missing security properties: Data privacy, Data integrity, Origin verification.
+- Mission risks: Anyone analyzing the network traffic can read the telemetry data. This means attackers can learn about the satellite's status and operations.
+
+=== TASK 3: Injecting a Fake Telemetry Message ===
+- Injected messages: 
+  echo "SAT_ID=sat-001;TIMESTAMP=$(date -Iseconds);VALUE=9999" | nc -q 0 127.0.0.1 5000
+  echo "SAT_ID=sat-002;TIMESTAMP=$(date -Iseconds);VALUE=-100" | nc -q 0 127.0.0.1 5000
+- Did receiver accept them? Yes.
+- Why accepted: The receiver just reads the incoming text and doesn't verify who sent it or if it was modified.
+- Impact on mission: Fake data can trigger false alarms. This might cause the operators to make wrong decisions, send bad commands, or shut down important systems.
+- Necessary security mechanism: We need message integrity and authenticity (like HMAC) to make sure messages are not modified and come from a trusted source.
+
+=== TASK 5: Replay Protection ===
+- Accepted message:
+  [ACCEPTED] SAT_ID=sat-001;TIMESTAMP=2026-05-04T12:05:00+02:00;VALUE=88
+- Rejected message:
+  [REJECTED] REPLAY DETECTED: SAT_ID=sat-001;TIMESTAMP=2026-05-04T12:05:00+02:00;VALUE=88
+- Why HMAC alone is not sufficient: HMAC only checks if the signature is correct based on the secret key. It doesn't know if this exact message was already sent before.
+- How timestamp prevents replay: The receiver saves the timestamp of the last valid message. If a new message has the same or an older timestamp, it rejects it.
+- Limitations: It requires all devices to have exactly the same time (clock synchronization). Also, if messages arrive out of order because of network delays, valid messages might be rejected.
+
+=== FINAL REFLECTION ===
+- What was possible in insecure channel: Reading the network traffic (no data privacy), changing messages, and injecting fake data.
+- Attacks blocked by HMAC: Changing the message content and injecting fake messages by someone who doesn't know the secret key.
+- Attacks still possible after HMAC (without replay protection): Replay attacks and reading the telemetry data (sniffing traffic).
+- Why replay protection needed: To stop an attacker from recording a valid message and sending it again later to trick the system.
+- Why no data privacy: HMAC only adds a signature to verify that data was not changed. The message text is still sent as plain text, so anyone can read it.
+- Additional protections for command channel: We would need encryption (like AES) to hide the commands, and better replay protection like non-repeated numbers (nonces) or challenge-response mechanisms. Proper identity verification (using certificates) would also be required.
+
