@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HOST="127.0.0.1"
-PORT="${PORT:-6003}"
+PORT="${PORT:-6004}"
 
 USER_NAME="$1"
 ROLE="$2"
@@ -11,7 +11,7 @@ if [ -z "$USER_NAME" ] || [ -z "$ROLE" ] || [ -z "$CMD" ]; then
     echo "Usage: $0 <user> <role> <command>"
     echo "Example: $0 alice operator SET_MODE_SAFE"
     echo ""
-    echo "Optional: PORT=6003 $0 alice operator SET_MODE_SAFE"
+    echo "Optional: PORT=6004 $0 alice operator SET_MODE_SAFE"
     exit 1
 fi
 
@@ -28,9 +28,11 @@ case "$USER_NAME" in
 esac
 
 TS=$(date -Iseconds)
-DATA="USER=$USER_NAME;ROLE=$ROLE;CMD=$CMD;TIMESTAMP=$TS"
+COMMAND_ID="CMD-$(date +%Y%m%d%H%M%S)-$RANDOM"
+DATA="USER=$USER_NAME;ROLE=$ROLE;CMD=$CMD;COMMAND_ID=$COMMAND_ID;TIMESTAMP=$TS"
 AUTH=$(printf "%s" "$DATA" | openssl dgst -sha256 -hmac "$TOKEN" | awk '{print $NF}')
 MESSAGE="$DATA;AUTH=$AUTH"
+
 echo "[SENDING] $MESSAGE"
 
 if nc -h 2>&1 | grep -q -- "-q"; then

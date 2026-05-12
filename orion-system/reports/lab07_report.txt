@@ -1,0 +1,104 @@
+Task 5: Replay Protection for Commands
+Setup:
+- Scripts: command_replay_sender.sh, command_replay_receiver.sh
+- Port: 6004
+- Log: ../reports/command_replay_protection.log
+
+Evidence (log excerpts):
+[AUTHORIZED 2026-05-12T14:06:48+02:00] USER=alice ROLE=operator CMD=SET_MODE_SAFE COMMAND_ID=CMD-20260512140648-6395
+[REJECTED 2026-05-12T14:06:48+02:00] REPLAY DETECTED: COMMAND_ID=CMD-20260512140648-6395
+
+Analysis:
+- HMAC alone is not sufficient because a captured valid message can be resent later without modification.
+- COMMAND_ID makes each command unique so the receiver can detect duplicates.
+- Replay is more dangerous for commands than telemetry because commands can change system state or trigger critical actions repeatedly.
+- Limitation: this approach requires persistent storage and synchronization; if the database is lost, old commands could be replayed again.
+
+Task 6: Critical Command Safety Gate
+Setup:
+- Scripts: command_safe_sender.sh, command_safe_receiver.sh
+- Port: 6005
+- Log: ../reports/command_safety_gate.log
+- Pending DB: ../reports/pending_commands.db
+
+Evidence (log excerpts):
+[AUTHORIZED 2026-05-12T14:12:53+02:00] USER=alice ROLE=operator CMD=SET_MODE_SAFE
+[PENDING 2026-05-12T14:12:53+02:00] USER=bob ROLE=admin CMD=SHUTDOWN REQUEST_ID=REQ-20260512141253-25520
+[AUTHORIZED 2026-05-12T14:13:08+02:00] CONFIRMED REQUEST_ID=REQ-20260512141253-25520
+[REJECTED 2026-05-12T14:12:53+02:00] UNKNOWN REQUEST_ID=REQ-DOES-NOT-EXIST
+[REJECTED 2026-05-12T14:13:08+02:00] UNAUTHORIZED USER=alice ROLE=operator CMD=CONFIRM
+
+Analysis:
+- Authentication and authorization are not enough for critical commands because even valid users can cause immediate unsafe actions.
+- Cybersecurity confirms identity and permissions; operational safety adds procedural control before dangerous actions.
+- The safety gate reduces risk by forcing explicit confirmation of critical actions.
+- Additional mechanisms in real systems include time windows, multi-person approval, state checks, and rate limiting.
+
+Task 7: Protected Command Channel Using TLS Tunnel (stunnel)
+Setup:
+- Certificate: ../credentials/tls/orion.pem
+- Config: ../credentials/tls/stunnel-server.conf
+- TLS port: 7005 -> Receiver port: 6005
+
+Status:
+- stunnel installed and running with ../credentials/tls/stunnel-server.conf
+- command_tls_sender.sh used to send through TLS on port 7005
+
+Packet capture (tcpdump excerpts):
+- Plaintext on port 6005:
+	USER=alice;ROLE=operator;CMD=SET_MODE_SAFE;COMMAND_ID=CMD-20260512143624-30780;TIMESTAMP=2026-05-12T14:36:24+02:00;AUTH=df6acaad55763866c4017a6e6a0abd2ec04883f785799692ddd842220bf6dd8d
+- Encrypted on port 7005:
+	TLS records appear as binary payload; command fields are not readable.
+
+Task 8: Alternative Secure Transport with socat
+socat command:
+socat OPENSSL-LISTEN:7005,bind=127.0.0.1,cert=../credentials/tls/orion.pem,verify=0,fork TCP-CONNECT:127.0.0.1:6005
+
+How the tunnel works:
+- socat listens on port 7005 using TLS.
+- It terminates TLS and forwards decrypted traffic to the HMAC receiver on 6005.
+- The fork option supports multiple clients.
+
+Evidence (log excerpt):
+[AUTHORIZED 2026-05-12T14:15:12+02:00] USER=alice ROLE=operator CMD=SET_MODE_SAFE
+
+Comparison with stunnel:
+- socat is a general-purpose relay tool; stunnel is dedicated to TLS tunneling.
+- socat is easier to debug interactively; stunnel is more convenient for persistent service use.
+- socat can be more suitable for embedded systems with limited software footprint.
+
+Packet capture (tcpdump summary):
+- Port 6005 contains readable command fields in plaintext.
+- Port 7005 contains encrypted TLS payload with no readable command content.
+
+Task 9: Interface Isolation (Variant A)
+socat command restricting to loopback:
+socat OPENSSL-LISTEN:7005,bind=127.0.0.1,cert=../credentials/tls/orion.pem,verify=0,fork TCP-CONNECT:127.0.0.1:6005
+
+Exposed interface: Loopback interface (lo/127.0.0.1).
+Why reducing network exposure improves security:
+It minimizes the attack surface by only allowing local processes to access the tunnel. External attackers cannot remotely connect to the port if it is strictly bound to 127.0.0.1.
+
+When binding only to localhost may be insufficient:
+In real mission environments, commands might need to be received from a remote ground station or command center over a network, so binding only to localhost would break legitimate remote connectivity, necessitating binding to a specific secure network interface or using a VPN/IPsec.
+
+Task 12: Final Mission ORION Incident Analysis
+1. Unauthenticated command: Fails. Blocked by HMAC verification or token requirement. Without it, anyone could execute commands.
+2. Forged command with ROLE=admin: Fails. The signature (HMAC) will not match. Without HMAC, authorization could be bypassed by simply altering the ROLE field.
+3. Capturing token from naive channel: Succeeds. Without TLS, the token is sent in plaintext and can be intercepted.
+4. Executing SHUTDOWN using captured token: Succeeds (if replay protection is not enabled) or fails (if nonce/timestamp validation is strict). The token system allows whoever possesses the token to act as the user.
+5. Forged HMAC-based command without token: Fails. Without the secret key to generate a valid HMAC, the receiver drops it. If missing, commands would be accepted.
+6. Replays previously valid authenticated command: Fails. Blocked by replay protection. If missing, an attacker could resend old commands to arbitrarily change system state.
+7. Confirming critical command without request: Fails. Blocked by the command safety gate requiring confirmation.
+8. Observing TLS-protected channel: Fails. TLS encrypts the payload, so passive observers cannot see the command contents.
+
+Final Reflection
+- What was possible in the insecure command channel? Unrestricted sending, snooping, altering, and spoofing of commands.
+- Which attacks were blocked by authorization? Executing privileged commands by non-admins.
+- Which attacks were blocked by authentication? Commands from unknown or unverified senders.
+- Which attacks were blocked by HMAC? Tampering with command fields (integrity) and spoofing.
+- Which attacks were blocked by replay protection? Resending previously captured valid commands.
+- Why was a safety gate needed? To prevent accidentally triggering destructive actions without confirmation or preconditions being met.
+- Why does HMAC not provide confidentiality? HMAC only proves who sent it and that it has not changed. The message contents are still plaintext.
+- Why does TLS not replace command authorization? TLS provides transport security, but any client with access to the tunnel still needs authorization at the application level.
+- What additional protections would be required? Mutual TLS (client certificates), better key management, intrusion detection, logging, physical security, and strict network segmentation.

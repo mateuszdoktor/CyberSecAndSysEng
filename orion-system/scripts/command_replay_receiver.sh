@@ -1,15 +1,17 @@
 #!/bin/bash
 
-PORT="${1:-${PORT:-6003}}"
+PORT="${PORT:-6004}"
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 REPORT_DIR="$SCRIPT_DIR/../reports"
-LOG_FILE="$REPORT_DIR/command_hmac_authentication.log"
+LOG_FILE="$REPORT_DIR/command_replay_protection.log"
 USER_DB="$SCRIPT_DIR/../credentials/user_db.txt"
+STATE_FILE="$REPORT_DIR/processed_commands.db"
 
 mkdir -p "$REPORT_DIR"
 touch "$LOG_FILE"
+touch "$STATE_FILE"
 
-echo "=== HMAC AUTHENTICATED COMMAND RECEIVER STARTED ==="
+echo "=== REPLAY-PROTECTED COMMAND RECEIVER STARTED ==="
 echo "Listening on 127.0.0.1:$PORT"
 echo "Logging to $LOG_FILE"
 echo ""
@@ -21,11 +23,12 @@ while true; do
         USER_NAME=$(echo "$line" | grep -o 'USER=[^;]*' | cut -d= -f2)
         ROLE=$(echo "$line" | grep -o 'ROLE=[^;]*' | cut -d= -f2)
         CMD=$(echo "$line" | grep -o 'CMD=[^;]*' | cut -d= -f2)
+        COMMAND_ID=$(echo "$line" | grep -o 'COMMAND_ID=[^;]*' | cut -d= -f2)
         MSG_TS=$(echo "$line" | grep -o 'TIMESTAMP=[^;]*' | cut -d= -f2)
         RECEIVED_AUTH=$(echo "$line" | grep -o 'AUTH=[^;]*' | cut -d= -f2)
 
-        echo "[RECEIVED $TS] USER=$USER_NAME ROLE=$ROLE CMD=$CMD"
-        echo "[RECEIVED $TS] USER=$USER_NAME ROLE=$ROLE CMD=$CMD MSG_TS=$MSG_TS RAW=$line" >> "$LOG_FILE"
+        echo "[RECEIVED $TS] USER=$USER_NAME ROLE=$ROLE CMD=$CMD COMMAND_ID=$COMMAND_ID"
+        echo "[RECEIVED $TS] USER=$USER_NAME ROLE=$ROLE CMD=$CMD COMMAND_ID=$COMMAND_ID MSG_TS=$MSG_TS RAW=$line" >> "$LOG_FILE"
 
         ENTRY=$(grep "^$USER_NAME:" "$USER_DB")
         if [ -z "$ENTRY" ]; then
@@ -39,13 +42,13 @@ while true; do
         DB_TOKEN=$(echo "$ENTRY" | cut -d: -f3)
 
         if [ "$ROLE" != "$DB_ROLE" ]; then
-            echo "[REJECTED $TS] ROLE MISMATCH for USER=$USER_NAME, expected ROLE=$DB_ROLE but got ROLE=$ROLE"
+            echo "[REJECTED $TS] ROLE MISMATCH USER=$USER_NAME EXPECTED_ROLE=$DB_ROLE ROLE=$ROLE"
             echo "[REJECTED $TS] ROLE MISMATCH USER=$USER_NAME EXPECTED_ROLE=$DB_ROLE ROLE=$ROLE RAW=$line" >> "$LOG_FILE"
             echo ""
             continue
         fi
 
-        DATA="USER=$USER_NAME;ROLE=$ROLE;CMD=$CMD;TIMESTAMP=$MSG_TS"
+        DATA="USER=$USER_NAME;ROLE=$ROLE;CMD=$CMD;COMMAND_ID=$COMMAND_ID;TIMESTAMP=$MSG_TS"
         EXPECTED_AUTH=$(printf "%s" "$DATA" | openssl dgst -sha256 -hmac "$DB_TOKEN" | awk '{print $NF}')
 
         if [ "$RECEIVED_AUTH" != "$EXPECTED_AUTH" ]; then
@@ -54,6 +57,15 @@ while true; do
             echo ""
             continue
         fi
+
+        if grep -q "^$COMMAND_ID$" "$STATE_FILE"; then
+            echo "[REJECTED $TS] REPLAY DETECTED: COMMAND_ID=$COMMAND_ID"
+            echo "[REJECTED $TS] REPLAY DETECTED: COMMAND_ID=$COMMAND_ID RAW=$line" >> "$LOG_FILE"
+            echo ""
+            continue
+        fi
+
+        echo "$COMMAND_ID" >> "$STATE_FILE"
 
         AUTHORIZED="no"
         if [ "$ROLE" = "admin" ]; then
@@ -77,8 +89,8 @@ while true; do
             continue
         fi
 
-        echo "[AUTHORIZED $TS] USER=$USER_NAME ROLE=$ROLE CMD=$CMD"
-        echo "[AUTHORIZED $TS] USER=$USER_NAME ROLE=$ROLE CMD=$CMD RAW=$line" >> "$LOG_FILE"
+        echo "[AUTHORIZED $TS] USER=$USER_NAME ROLE=$ROLE CMD=$CMD COMMAND_ID=$COMMAND_ID"
+        echo "[AUTHORIZED $TS] USER=$USER_NAME ROLE=$ROLE CMD=$CMD COMMAND_ID=$COMMAND_ID RAW=$line" >> "$LOG_FILE"
 
         case "$CMD" in
             SET_MODE_NOMINAL)
