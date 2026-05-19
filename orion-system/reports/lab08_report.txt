@@ -1,0 +1,6 @@
+- include your Docker version,
+- explain what a Docker daemon is,
+- explain why Docker uses containers,
+- explain why Linux groups are important for Docker,
+- explain what happened when you ran the hello-world container.
+
