@@ -34,3 +34,46 @@ services:
     command: -config.file=/etc/promtail/config.yml
     depends_on:
       - loki
+
+  tempo:
+    image: grafana/tempo:latest
+    container_name: tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./tempo.yml:/etc/tempo.yaml
+    ports:
+      - "3200:3200"
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./otel-collector-config.yml:/etc/otelcol/config.yaml
+    ports:
+      - "4318:4318"
+      - "8889:8889"
+    depends_on:
+      - tempo
+
+  telemetry-service:
+    image: alpine:latest
+    container_name: telemetry-service
+    command: ["/bin/sh", "/app/telemetry-service.sh"]
+    volumes:
+      - ./telemetry-service.sh:/app/telemetry-service.sh
+
+  command-service:
+    image: alpine:latest
+    container_name: command-service
+    command: >
+      sh -c "
+      apk add --no-cache netcat-openbsd &&
+      sh /app/command-server.sh
+      "
+
+    volumes:
+      - ./command-server.sh:/app/command-server.sh 
+    ports:
+      - "6004:6004"
+
