@@ -1,0 +1,62 @@
+Task 7: Runtime Incident Simulation and Investigation
+
+Incident 1: CPU Spike Detection
+- Ran: docker exec -d telemetry-service sh -c "yes > /dev/null"
+- Observed CPU spike in telemetry-service (100.15%).
+- Stopped: docker exec telemetry-service killall yes
+- Observed CPU return to normal (0.09%).
+
+Incident 2: Unauthorized Administrative Commands
+- Created and executed unauthorized_command_attack.sh.
+- Observed repeated log entries:
+	USER=intruder;ROLE=admin;CMD=SHUTDOWN
+- Loki query to use: {job="docker"} |= "intruder"
+
+Incident 3: Mission Service Failure
+- Stopped command-service and confirmed it was not running.
+- nc -zv 127.0.0.1 6004 reported connection refused.
+- Prometheus up metric showed:
+	prometheus localhost:9090 up=1
+	otel-collector otel-collector:8889 up=1
+- Traces still generated using command_replay_sender.sh (telemetry pipeline healthy).
+- Restarted command-service and verified:
+	nc -zv succeeded and logs showed command processing.
+
+Independent Challenges
+
+Challenge 1: Highest CPU container
+- docker stats --no-stream showed highest CPU at that time:
+	loki 0.85%
+- Mitigation: inspect logs and reduce load or restart if needed.
+
+Challenge 2: Suspicious admin activity
+- Found intruder activity in logs:
+	USER=intruder;ROLE=admin;CMD=SHUTDOWN
+- Repeated events indicate malicious behavior.
+
+Challenge 3: Telemetry pipeline investigation
+- Docker showed otel-collector, prometheus, tempo, loki running.
+- Prometheus up metric returned otel-collector up=1.
+- Command-service was reachable, so no current outage.
+- Conclusion: telemetry pipeline operational; command subsystem operational.
+
+Challenge 4: Distributed trace investigation
+- Generated traces for commands: STATUS (bob), DEPLOY (carol), SHUTDOWN (dave).
+- Use TraceQL: {resource.service.name="mission-orion"} and filter by span name.
+- Administrative operations: DEPLOY, SHUTDOWN.
+
+Challenge 5: Command interface availability
+- command-service running and reachable (nc -zv success).
+- Commands accepted and visible in logs (USER=eve;ROLE=operator;CMD=PING).
+- Conclusion: interface operational.
+
+Questions
+1. Observability includes metrics, logs, and traces with correlation; logging alone is just text output.
+2. Metrics provide fast health and trend signals for mission systems (latency, errors, saturation).
+3. Logs alone lack aggregated trends, timing context, and cross-service correlation.
+4. Traces show end-to-end request paths, timing, and dependencies across services.
+5. A span is a timed operation within a trace, with attributes and timing.
+6. OpenTelemetry correlates via shared trace/span IDs and consistent resource attributes.
+7. Observability reveals anomalies, suspicious behavior, and unusual resource patterns.
+8. Correlation links signals to reduce MTTR and identify root cause in distributed systems.
+
